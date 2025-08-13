@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://carlosriberadonet.github.io/TrailersFlix/") // URL de tu frontend
+                        .allowedOrigins("https://carlosriberadonet.github.io/TrailersFlix") // URL de tu frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }
