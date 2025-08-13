@@ -1,19 +1,30 @@
-app = "peliculasonlinehd" # nombre único de tu app en Fly.io
+# fly.toml app configuration file generated for peliculasonlinehd on 2025-08-13T15:33:38+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'peliculasonlinehd'
+primary_region = 'cdg'
 
 [build]
-dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-PORT = "8080"
+  PORT = '8080'
 
 [[services]]
-internal_port = 8080
-protocol = "tcp"
+  protocol = 'tcp'
+  internal_port = 8080
 
-[[services.ports]]
-handlers = ["http"]
-port = 80
+  [[services.ports]]
+    port = 80
+    handlers = ['http']
 
-[[services.ports]]
-handlers = ["tls", "http"]
-port = 443
+  [[services.ports]]
+    port = 443
+    handlers = ['tls', 'http']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

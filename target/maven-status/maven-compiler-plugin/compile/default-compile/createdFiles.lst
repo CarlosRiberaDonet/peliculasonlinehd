@@ -1,0 +1,16 @@
+com\peliculasonlinehd\peliculasonlinehd\dao\ApiDAO$2.class
+com\peliculasonlinehd\peliculasonlinehd\config\CorsConfig.class
+com\peliculasonlinehd\peliculasonlinehd\service\TrailerService.class
+com\peliculasonlinehd\peliculasonlinehd\service\MovieService.class
+com\peliculasonlinehd\peliculasonlinehd\entity\MovieResponse.class
+com\peliculasonlinehd\peliculasonlinehd\entity\Movie.class
+com\peliculasonlinehd\peliculasonlinehd\dao\ApiDAO$1.class
+com\peliculasonlinehd\peliculasonlinehd\controllers\TrailerController.class
+com\peliculasonlinehd\peliculasonlinehd\entity\TrailerResponse.class
+com\peliculasonlinehd\peliculasonlinehd\controllers\FilmController.class
+com\peliculasonlinehd\peliculasonlinehd\entity\Trailer.class
+com\peliculasonlinehd\peliculasonlinehd\dto\Filters.class
+com\peliculasonlinehd\peliculasonlinehd\PeliculasonlinehdApplication.class
+com\peliculasonlinehd\peliculasonlinehd\config\CorsConfig$1.class
+com\peliculasonlinehd\peliculasonlinehd\controllers\FiltersController.class
+com\peliculasonlinehd\peliculasonlinehd\dao\ApiDAO.class
