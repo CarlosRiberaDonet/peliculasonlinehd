@@ -47,6 +47,16 @@ public class ApiDAO {
         return response.getBody();
     }
 
+    // Obtener próximos estrenos
+    public MovieResponse getUpcoming(String urlUpcoming){
+        return connectAPI(urlUpcoming, new ParameterizedTypeReference<MovieResponse>() {});
+    }
+
+    // Obtener cartelera
+    public MovieResponse getPlayingNow(String urlPlayingNow){
+        return connectAPI(urlPlayingNow, new ParameterizedTypeReference<MovieResponse>() {});
+    }
+
     // Obtiene catálogo de películas
     public MovieResponse getMovies(String url) {
         return connectAPI(url, new ParameterizedTypeReference<MovieResponse>() {});
@@ -56,7 +66,6 @@ public class ApiDAO {
     public TrailerResponse getTrailer(String url){
         return connectAPI(url, new ParameterizedTypeReference<TrailerResponse>() {});
     }
-
 
     // Deserializar JSON
     public List<Movie> deserializerJson(String jsonString){

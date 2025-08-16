@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/peliculas")
+@CrossOrigin(origins = "*")
 public class FilmController {
 
     private final MovieService movieService;
@@ -17,6 +18,17 @@ public class FilmController {
         this.movieService = movieService;
     }
 
+    @GetMapping("/upcoming")
+    public MovieResponse proximasPeliculas(){
+        return movieService.getUpcomingMovies();
+    }
+
+    @GetMapping("/playing")
+    public MovieResponse carteleraPeliculas(){
+        return movieService.getNowPlaying();
+    }
+
+    // Obtiene péliculas mediante número de página
     @GetMapping
     public MovieResponse listarPeliculas(@RequestParam(defaultValue = "1") int page) {
         Filters filters = new Filters(); // filtros vacíos

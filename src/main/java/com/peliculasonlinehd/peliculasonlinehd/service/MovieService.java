@@ -19,6 +19,18 @@ public class MovieService {
         this.apiDAO = apiDAO;
     }
 
+    // Obtiene lista de próximos estrenos
+    public MovieResponse getUpcomingMovies(){
+        String upcomingMovies = "https://api.themoviedb.org/3/movie/upcoming";
+        return apiDAO.getUpcoming(upcomingMovies);
+    }
+
+    // Obtiene lista de películas en cartelera
+    public MovieResponse getNowPlaying(){
+        String nowPlaying = "https://api.themoviedb.org/3/movie/now_playing";
+        return apiDAO.getPlayingNow(nowPlaying);
+    }
+
     public MovieResponse getMoviesByFilters(int page, Filters filters){
         String filtersUrl = buildUrlFilters(page, filters);
         return apiDAO.getMovies(filtersUrl);
