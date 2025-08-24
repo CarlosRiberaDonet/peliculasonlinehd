@@ -76,19 +76,18 @@
       </div>
     </section>
 
- <!-- Carrusel de cartelera -->
-<section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
-  <h2>Cartelera</h2>
-  <div class="fila-peliculas">
-    <button id="cartelera-prev" class="btn-scroll">&#10094;</button>
-    <div class="peliculas-wrapper">
-      <div id="cartelera-container" class="peliculas-container">
-        <!-- Las peliculas se inyectarán aquí desde JS -->
+    <section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
+      <div class="fila-peliculas">
+        <h2 class="cartelera-header">Cartelera</h2>
+        <button id="cartelera-prev" class="btn-scroll">&#10094;</button>
+        <div class="peliculas-wrapper">
+          <div id="cartelera-container" class="peliculas-container">
+            <!-- Las peliculas se inyectarán aquí desde JS -->
+          </div>
+        </div>
+        <button id="cartelera-next" class="btn-scroll">&#10095;</button>
       </div>
-    </div>
-    <button id="cartelera-next" class="btn-scroll">&#10095;</button>
-  </div>
-</section>
+    </section>
 
 
       <!-- Famosos más populares -->
@@ -106,7 +105,7 @@
       
   <!-- Carrusel trending day peliculas -->
 <section id="trending-day-list" aria-label="Listado de trending day" role="list" itemscope itemtype="https://schema.org/ItemList">
-  <h2>Trending hoy</h2>
+   <h2 class="cartelera-header">Trending hoy</h2>
   <div class="fila-peliculas"> <!-- misma clase que cartelera -->
     <button id="trending-prev" class="btn-scroll">&#10094;</button>
     <div class="peliculas-wrapper">

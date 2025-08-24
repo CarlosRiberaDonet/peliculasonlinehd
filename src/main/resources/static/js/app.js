@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de películas en cartelera
   cargarPeliculas(
-    'https://peliculasonlinehd.fly.dev/peliculas?playing',
+    'http://localhost:8080/peliculas/playing',
     'cartelera-container',
     'cartelera-prev',
     'cartelera-next',

@@ -1,41 +1,44 @@
 import { cargarPeliculas } from './peliculas.js';
 import { SingleMovieSlider } from './SingleMovieSlider.js';
+import {loadFamous} from './FamousPeople.js';
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
 
   // Cargar el carrusel de próximos estrenos
-  fetch('http://localhost:8080/peliculas/upcoming')
+  fetch('https://peliculasonlinehd.fly.dev/peliculas/upcoming')
     .then(res => res.json())
     .then(data => {
       new SingleMovieSlider(
         'proximo-container',
-        'btn-prev-proximo',
-        'btn-next-proximo',
+        'btn-upcoming-prev',
+        'btn-upcoming-next',
         data.results
       );
     });
 
-  // Cargar el carrusel de películas generales
+  // Cargar el carrusel de películas en cartelera
   cargarPeliculas(
-    'http://localhost:8080/peliculas?playing',
-    'peliculas-container',
-    'btn-prev',
-    'btn-next',
+    'http://localhost:8080/peliculas/playing',
+    'cartelera-container',
+    'cartelera-prev',
+    'cartelera-next',
     6,
     196
   );
 
-
-  // Cargar el carrusel de películas generales
+  // Cargar el carrusel de películas trending day
   cargarPeliculas(
-    'http://localhost:8080/peliculas?page=1',
-    'peliculas-container',
-    'btn-prev',
-    'btn-next',
+    'http://localhost:8080/peliculas/trendingDayMovies',
+    'trending-container',
+    'trending-prev',
+    'trending-next',
     6,
     196
   );
+
+  // Cargar famosos populares
+  loadFamous();
 
 
   // Menú hamburguesa
