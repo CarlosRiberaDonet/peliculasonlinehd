@@ -1,9 +1,13 @@
 package com.peliculasonlinehd.peliculasonlinehd.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peliculasonlinehd.peliculasonlinehd.dao.ApiDAO;
 import com.peliculasonlinehd.peliculasonlinehd.dto.Filters;
+
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+import com.peliculasonlinehd.peliculasonlinehd.entity.Movie;
 import com.peliculasonlinehd.peliculasonlinehd.entity.MovieResponse;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 public class MovieService {
 
     private final ApiDAO apiDAO;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     public MovieService(ApiDAO apiDAO){
         this.apiDAO = apiDAO;
@@ -21,17 +26,44 @@ public class MovieService {
 
     // Obtiene lista de próximos estrenos
     public MovieResponse getUpcomingMovies(){
-        String upcomingMovies = "https://api.themoviedb.org/3/movie/upcoming";
-        return apiDAO.getUpcoming(upcomingMovies);
+        String upcomingMoviesUrl = "https://api.themoviedb.org/3/movie/upcoming";
+        try{
+            String json = apiDAO.getFromApi(upcomingMoviesUrl);
+            return mapper.readValue(json, MovieResponse.class);
+        }catch (Exception e){
+            System.out.println("Error al obtener la lista de peliculas desde getUpcomingMovies");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // Obtiene lista de películas en cartelera
     public MovieResponse getNowPlaying(){
-        String nowPlaying = "https://api.themoviedb.org/3/movie/now_playing";
-        return apiDAO.getPlayingNow(nowPlaying);
+        String nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing";
+        try{
+            String json = apiDAO.getFromApi(nowPlayingUrl);
+            return mapper.readValue(json, MovieResponse.class);
+        }catch (Exception e){
+            System.out.println("Error al obtener la lista de peliculas desde getNowPlaying");
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public MovieResponse getMoviesByFilters(int page, Filters filters){
+    // Obtiene trending day de películas
+    public MovieResponse getTrendingDayMovies(){
+        String trendingDayMoviesUrl = "https://api.themoviedb.org/3/trending/movie/day?";
+        try{
+            String json = apiDAO.getFromApi(trendingDayMoviesUrl);
+            return mapper.readValue(json, MovieResponse.class);
+        }catch (Exception e){
+            System.out.println("Error al obtener la lista de peliculas desde getTrendingDayMovies");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*public MovieResponse getMoviesByFilters(int page, Filters filters){
         String filtersUrl = buildUrlFilters(page, filters);
         return apiDAO.getMovies(filtersUrl);
     }
@@ -82,6 +114,6 @@ public class MovieService {
         }
         System.out.println("URL CREADA: " + filtersUrl);
         return filtersUrl.toString();
-    }
+    }*/
 }
 

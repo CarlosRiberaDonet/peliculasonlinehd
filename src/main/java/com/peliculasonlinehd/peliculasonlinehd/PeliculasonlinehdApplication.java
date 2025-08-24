@@ -1,8 +1,5 @@
 package com.peliculasonlinehd.peliculasonlinehd;
 
-import com.peliculasonlinehd.peliculasonlinehd.controllers.TrailerController;
-import com.peliculasonlinehd.peliculasonlinehd.entity.Trailer;
-import com.peliculasonlinehd.peliculasonlinehd.service.TrailerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -3,6 +3,7 @@ package com.peliculasonlinehd.peliculasonlinehd.dao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peliculasonlinehd.peliculasonlinehd.entity.MovieResponse;
 import com.peliculasonlinehd.peliculasonlinehd.entity.Movie;
+import com.peliculasonlinehd.peliculasonlinehd.entity.PeopleResponse;
 import com.peliculasonlinehd.peliculasonlinehd.entity.TrailerResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -22,61 +23,25 @@ public class ApiDAO {
     private final RestTemplate restTemplate = new RestTemplate();
 
     // Token Bearer de acceso para la API TMDB
-    private final String BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NmIyNGFiMmQzODIyNjFlYjRiYWI2ODk0OWQ0NDliMSIsIm5iZiI6MTc1NDYxMzE0My4wNDgsInN1YiI6IjY4OTU0NTk3N2I0ZGYyYjA0YjA3Yzg5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PPTJI_FGi5ApA8sY0T61ZvX--gONMVDhlVi_hTeEpvU";
+    private final String BEARER_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NmIyNGFiMmQzODIyNjFlY" +
+            "jRiYWI2ODk0OWQ0NDliMSIsIm5iZiI6MTc1NDYxMzE0My4wNDgsInN1YiI6IjY4OTU0NTk3N2I0ZGYyYjA" +
+            "0YjA3Yzg5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PPTJI_FGi5ApA8sY0T61Zv" +
+            "X--gONMVDhlVi_hTeEpvU";
 
-    /**
-     * Obtiene películas desde TMDB usando filtros y página en la query.
-     * @return MovieResponse deserializado con resultados de películas
-     */
-
-    // Conexión a la API
-    public <T> T connectAPI(String url, ParameterizedTypeReference<T> responseType) {
+    // Conexión a la API → devuelve siempre JSON en String
+    public String getFromApi(String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("accept", "application/json");
         headers.set("Authorization", "Bearer " + BEARER_TOKEN);
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<T> response = restTemplate.exchange(
+        ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 entity,
-                responseType
+                String.class
         );
-
         return response.getBody();
-    }
-
-    // Obtener próximos estrenos
-    public MovieResponse getUpcoming(String urlUpcoming){
-        return connectAPI(urlUpcoming, new ParameterizedTypeReference<MovieResponse>() {});
-    }
-
-    // Obtener cartelera
-    public MovieResponse getPlayingNow(String urlPlayingNow){
-        return connectAPI(urlPlayingNow, new ParameterizedTypeReference<MovieResponse>() {});
-    }
-
-    // Obtiene catálogo de películas
-    public MovieResponse getMovies(String url) {
-        return connectAPI(url, new ParameterizedTypeReference<MovieResponse>() {});
-    }
-
-    // Conexión a la API para obtener el trailer de la película
-    public TrailerResponse getTrailer(String url){
-        return connectAPI(url, new ParameterizedTypeReference<TrailerResponse>() {});
-    }
-
-    // Deserializar JSON
-    public List<Movie> deserializerJson(String jsonString){
-        ObjectMapper mapper = new ObjectMapper();
-        try{
-            MovieResponse movieResponse = mapper.readValue(jsonString, MovieResponse.class);
-
-        } catch (IOException e) {
-            System.out.println("Error ApiDao -> deserializerJson");
-            e.printStackTrace();
-        }
-        return null;
     }
 }

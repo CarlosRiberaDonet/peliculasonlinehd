@@ -1,10 +1,8 @@
 package com.peliculasonlinehd.peliculasonlinehd.controllers;
 
-import com.peliculasonlinehd.peliculasonlinehd.dao.ApiDAO;
 import com.peliculasonlinehd.peliculasonlinehd.dto.Filters;
 import com.peliculasonlinehd.peliculasonlinehd.entity.MovieResponse;
 import com.peliculasonlinehd.peliculasonlinehd.service.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,8 +26,13 @@ public class FilmController {
         return movieService.getNowPlaying();
     }
 
-    // Obtiene péliculas mediante número de página
-    @GetMapping
+    @GetMapping("/trendingDayMovies")
+    public MovieResponse trendingDay(){
+        return movieService.getTrendingDayMovies();
+    }
+
+    // Obtiene péliculas populares
+    /*@GetMapping
     public MovieResponse listarPeliculas(@RequestParam(defaultValue = "1") int page) {
         Filters filters = new Filters(); // filtros vacíos
         return movieService.getMoviesByFilters(page, filters);
@@ -38,5 +41,5 @@ public class FilmController {
     @PostMapping
     public MovieResponse listarPeliculas(@RequestParam int page, @RequestBody Filters filters) {
         return movieService.getMoviesByFilters(page, filters);
-    }
+    }*/
 }

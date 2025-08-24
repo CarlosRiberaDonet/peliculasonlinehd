@@ -1,10 +1,12 @@
 package com.peliculasonlinehd.peliculasonlinehd.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDate;
 import java.util.List;
 
+// Ignora propiedades del JSON que no estén mapeadas en esta clase
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
     private int id;
@@ -22,7 +24,7 @@ public class Movie {
     @JsonProperty("poster_path")
     private String posterPath;
     @JsonProperty("release_date")
-    private LocalDate releaseDate;
+    private String releaseDate;
     private String title;
     private boolean video;
     @JsonProperty("vote_average")
@@ -31,7 +33,7 @@ public class Movie {
     private int voteCount;
 
     // CONSTRUCTOR
-    public Movie(int id, boolean adult, String backDropPath, List<Integer> genreId, String originalLanguage, String originalTitle, String overview, double popularity, String posterPath, LocalDate releaseDate, String title, boolean video, double voteAverage, int voteCount) {
+    public Movie(int id, boolean adult, String backDropPath, List<Integer> genreId, String originalLanguage, String originalTitle, String overview, double popularity, String posterPath, String releaseDate, String title, boolean video, double voteAverage, int voteCount) {
         this.id = id;
         this.adult = adult;
         this.backDropPath = backDropPath;
@@ -126,11 +128,11 @@ public class Movie {
         this.posterPath = posterPath;
     }
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

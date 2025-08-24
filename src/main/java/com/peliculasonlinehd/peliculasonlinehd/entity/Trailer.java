@@ -1,7 +1,8 @@
 package com.peliculasonlinehd.peliculasonlinehd.entity;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Trailer {
     private String key;
     private String site;

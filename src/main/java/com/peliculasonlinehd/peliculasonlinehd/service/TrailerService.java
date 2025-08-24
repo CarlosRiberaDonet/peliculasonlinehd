@@ -1,6 +1,8 @@
 package com.peliculasonlinehd.peliculasonlinehd.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peliculasonlinehd.peliculasonlinehd.dao.ApiDAO;
+import com.peliculasonlinehd.peliculasonlinehd.entity.MovieResponse;
 import com.peliculasonlinehd.peliculasonlinehd.entity.Trailer;
 import com.peliculasonlinehd.peliculasonlinehd.entity.TrailerResponse;
 import org.springframework.stereotype.Service;
@@ -11,32 +13,37 @@ import java.util.List;
 public class TrailerService {
 
     private final ApiDAO apiDAO;
-    //private final TrailerResponse trailerResponse;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     public TrailerService(ApiDAO apiDAO){
         this.apiDAO = apiDAO;
     }
 
-    /*public TrailerService(TrailerResponse trailerResponse){
-        this.trailerResponse = trailerResponse;
-    }*/
-
     public String getTrailerById(int idPelicula){
-        String urlTrailer = "";
-        // Obtengo la lista de trailers en formato JSON mediante
-        TrailerResponse trailerJson = apiDAO.getTrailer("https://api.themoviedb.org/3/movie/" + idPelicula + "/videos");
+        String urlTrailer = "https://api.themoviedb.org/3/movie/" + idPelicula + "/videos";
+        try{
+            // Obtengo el JSON del API
+            String json = apiDAO.getFromApi(urlTrailer);
 
-        // Extraigo la lista de trailers del JSON
-        List<Trailer> trailerList = trailerJson.getTrailerList();
+            // Deserialize a TrailerResponse
+            TrailerResponse trailerResponse = mapper.readValue(json, TrailerResponse.class);
 
-        // Valido que la lista no sea nula o esté vacía
-        if(trailerList != null && !trailerList.isEmpty()){
-            String key = trailerList.get(0).getKey();
+            // Valido que la lista no sea nula o esté vacía
+            if(trailerResponse.getTrailerList() != null && !trailerResponse.getTrailerList().isEmpty()){
+                String key = trailerResponse.getTrailerList().get(0).getKey();
 
-            // Construyo la URL completa
-            urlTrailer = "https://www.youtube.com/watch?v=" + key;
+                // Construyo la URL completa de YouTube
+                urlTrailer = "https://www.youtube.com/watch?v=" + key;
+            }
+
+            System.out.println("URL PELICULA: " + urlTrailer);
+            return urlTrailer;
+
+        }catch (Exception e){
+            System.out.println("Error al obtener el trailer desde getTrailerById");
+            e.printStackTrace();
         }
-        System.out.println("URL PELICULA: " + urlTrailer);
-        return urlTrailer;
+
+        return null;
     }
 }
