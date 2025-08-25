@@ -58,34 +58,29 @@
 
     <!-- Carrusel de próximos estrenos -->
     <h2 class="titulo-estrenos">Próximamente</h2>
-    <section id="proximo-list" aria-label="Próximos estrenos" role="list" itemscope itemtype="https://schema.org/ItemList">
-      <div class="fila-peliculas">
-        <button id="btn-upcoming-next" class="btn-scroll-upcoming" aria-label="Anterior">&#10094;</button>
-        <div class="peliculas-wrapper" id="proximo-container">
-          
-          <!-- Cada película se inyecta aquí vía JS -->
-          <div class="pelicula-item">
-            <div class="proxima-pelicula-img">
-            </div>
-            <div class="proxima-pelicula-info">
-            </div>
+      <section id="proximo-list" aria-label="Próximos estrenos" role="list" itemscope itemtype="https://schema.org/ItemList">
+        <div class="fila-peliculas">
+          <button id="btn-upcoming-next" class="btn-scroll-upcoming" aria-label="Anterior">&#10094;</button>
+          <div class="peliculas-wrapper" id="proximo-container">
+            <!-- Aquí JS inyecta el <article class="proximo-item"> ... </article> -->
           </div>
-          
+          <button id="btn-upcoming-prev" class="btn-scroll-upcoming" aria-label="Siguiente">&#10095;</button>
         </div>
-        <button id="btn-upcoming-prev" class="btn-scroll-upcoming" aria-label="Siguiente">&#10095;</button>
-      </div>
-    </section>
+      </section>
 
+    <!-- Carrusel de cartelera -->
     <section id="cartelera-list" aria-label="Listado de cartelera" role="list" itemscope itemtype="https://schema.org/ItemList">
       <div class="fila-peliculas">
         <h2 class="cartelera-header">En cines</h2>
-        <button id="cartelera-prev" class="btn-scroll">&#10094;</button>
-        <div class="peliculas-wrapper">
-          <div id="cartelera-container" class="peliculas-container">
-            <!-- Las peliculas se inyectarán aquí desde JS -->
+        <div class="carrusel-controles">
+          <button id="cartelera-prev" class="btn-scroll">&#10094;</button>
+          <div class="peliculas-wrapper">
+            <div id="cartelera-container" class="peliculas-container">
+              <!-- Las peliculas se inyectarán aquí desde JS -->
+            </div>
           </div>
+          <button id="cartelera-next" class="btn-scroll">&#10095;</button>
         </div>
-        <button id="cartelera-next" class="btn-scroll">&#10095;</button>
       </div>
     </section>
 
@@ -103,19 +98,19 @@
       </section>
 
       
-  <!-- Carrusel trending day peliculas -->
-<section id="trending-day-list" aria-label="Listado de trending day" role="list" itemscope itemtype="https://schema.org/ItemList">
-   <h2 class="cartelera-header">Trending hoy</h2>
-  <div class="fila-peliculas"> <!-- misma clase que cartelera -->
-    <button id="trending-prev" class="btn-scroll">&#10094;</button>
-    <div class="peliculas-wrapper">
-      <div id="trending-container" class="peliculas-container">
-        <!-- Las peliculas se inyectarán aquí desde JS -->
+    <!-- Carrusel trending day peliculas -->
+    <section id="trending-day-list" aria-label="Listado de trending day" role="list" itemscope itemtype="https://schema.org/ItemList">
+      <h2 class="cartelera-header">Trending hoy</h2>
+      <div class="fila-peliculas"> <!-- misma clase que cartelera -->
+        <button id="trending-prev" class="btn-scroll">&#10094;</button>
+        <div class="peliculas-wrapper">
+          <div id="trending-container" class="peliculas-container">
+            <!-- Las peliculas se inyectarán aquí desde JS -->
+          </div>
+        </div>
+        <button id="trending-next" class="btn-scroll">&#10095;</button>
       </div>
-    </div>
-    <button id="trending-next" class="btn-scroll">&#10095;</button>
-  </div>
-</section>
+    </section>
 
   </main>
   

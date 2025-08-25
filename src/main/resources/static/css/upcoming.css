@@ -1,102 +1,109 @@
-/* =============================
-   HERO BANNER - PRÓXIMOS ESTRENOS
-   ============================= */
 .titulo-estrenos {
-  font-size: 1.8rem;
-  margin-top: 40px;
+  font-size: 2rem;
+  margin: 40px 0 20px 0;
   text-align: center;
+  color: #DAAD5C;
+  letter-spacing: 1px;
 }
 
 #proximo-list {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  height: 300px;
-  margin: 40px auto;
+  margin: 0 auto 40px auto;
   border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   box-sizing: border-box;
 }
 
-#proximo-container {
-  display: flex;
-  gap: 15px;
-  overflow-x: hidden;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  transition: transform 0.3s ease;
-}
-
-#proximo-container .pelicula-item {
-  flex: 0 0 180px;
-  display: flex;
-  flex-direction: column;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  overflow: hidden;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease;
-}
-
-#proximo-container .proximo-item .proximo-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  gap: 20px;
-  transition: all 0.5s ease;
-}
-
-.proximo-item .poster {
-  flex: 0 0 50%;
-  min-height: 200px;
+.fila-peliculas {
   display: flex;
   align-items: center;
+  position: relative;
+  width: 100%;
   justify-content: center;
+}
+
+.peliculas-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+}
+
+.proximo-item {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.proximo-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #1e1e1e;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+}
+
+.poster {
+  width: 60%;
+  aspect-ratio: 16/7;
+  object-fit: cover;
+  display: block;
   background: #000;
 }
 
-.proximo-item .poster img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-#proximo-container .proximo-item .info {
-  flex: 1;
-  max-height: 150px;
-  padding: 40px;
+.info {
+  width: 40%;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: center;
+  background: none;
+}
+
+.info h3 {
+  font-size: 2rem;
+  color: #DAAD5C;
+  margin: 0 0 18px 0;
+  font-weight: 700;
+  text-align: left;
+}
+
+.info p {
   color: #fff;
+  font-size: 1.08rem;
+  margin-bottom: 28px;
+  line-height: 1.5;
+  text-align: left;
+  max-height: 8em;
+  overflow: hidden;
 }
 
-#proximo-container .proximo-item h3 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+.btn-container {
+  display: flex;
+  justify-content: flex-start;
 }
 
-#proximo-container .proximo-item .btn-container button {
-  flex: 1;
-  padding: 12px 28px;
+.btn-container button {
+  padding: 12px 32px;
   color: #fff;
   background-color: #1f6feb;
   border: none;
   border-radius: 6px;
   font-weight: 600;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s;
 }
 
-#proximo-container .proximo-item .btn-container button:hover {
+.btn-container button:hover {
   background: #DAAD5C;
-  transform: scale(1.05);
+  color: #1f6feb;
 }
 
-/* Botones de scroll – próximos estrenos */
+/* Botones de scroll */
 .btn-scroll-upcoming {
   position: absolute;
   top: 50%;
@@ -113,153 +120,90 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s, color 0.3s;
 }
-
 #btn-upcoming-prev { right: 0; }
 #btn-upcoming-next { left: 0; }
-
 .btn-scroll-upcoming:hover {
   background-color: #DAAD5C;
-  color: rgba(31, 111, 235, 1);
+  color: #1f6feb;
 }
 
-/* =============================
-   VERSION RESPONSIVE
-   ============================= */
-@media screen and (max-width: 1024px) {
-  #proximo-list {
-    width: 98vw;
+/* ==============================
+   RESPONSIVE - MÓVIL
+   ============================== */
+@media screen and (max-width: 900px) {
+  .proximo-item {
     max-width: 98vw;
-    height: auto;
-    margin: 24px 0;
-    border-radius: 10px;
   }
-  #proximo-container {
-    gap: 10px;
-    padding-bottom: 12px;
-  }
-  #proximo-container .pelicula-item {
-    flex: 0 0 260px;
-    max-width: 90vw;
-    min-width: 160px;
-  }
-  #proximo-container .proximo-item .proximo-wrapper {
-    gap: 12px;
-  }
-  .btn-scroll-upcoming {
-    width: 32px;
-    height: 48px;
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-#proximo-list {
-    width: 99vw;
-    max-width: 99vw;
-    height: auto;
-    margin: 20px 0;
-    border-radius: 8px;
-    padding: 0 2vw;
-  }
-  #proximo-container {
-    gap: 8px;
-    padding-bottom: 10px;
-  }
-  #proximo-container .pelicula-item {
-    flex: 0 0 220px;
-    max-width: 80vw;
-    min-width: 140px;
-  }
-  #proximo-container .proximo-item .proximo-wrapper {
-    gap: 8px;
-  }
-  .btn-scroll-upcoming {
-    width: 28px;
-    height: 40px;
-    font-size: 1.1rem;
+  .proximo-wrapper {
+    border-radius: 0;
   }
 }
 
 @media screen and (max-width: 768px) {
   .titulo-estrenos {
-    font-size: 1.05rem;
-    margin-bottom: 4px;
-    text-align: left;
+    font-size: 1.15rem;
+    margin: 18px 0 8px 0;
     padding-left: 8px;
+    text-align: center;
   }
-
   #proximo-list {
     width: 100vw;
     max-width: 100vw;
-    height: auto;
-    margin: 10px 0 0 0;
+    margin: 0 0 20px 0;
     border-radius: 0;
-    overflow-x: auto;
     padding: 0;
+  }
+  .fila-peliculas {
+    padding: 0;
+    gap: 0;
+  }
+  .peliculas-wrapper {
+    width: 100vw;
+    padding: 0;
+  }
+  .proximo-item {
+    max-width: 100vw;
+    width: 100vw;
+  }
+  .proximo-wrapper {
+    flex-direction: column;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .poster {
+    width: 100vw;
+    aspect-ratio: 16/7;
+    min-height: 120px;
+    max-height: 220px;
+    border-radius: 0;
+  }
+  .info {
+    width: 100vw;
+    padding: 18px 10px 16px 10px;
     box-sizing: border-box;
   }
-
-  #proximo-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    transition: none;
-    padding-bottom: 10px;
-    gap: 6px;
-  }
-
-  #proximo-container .pelicula-item {
-    flex: 0 0 90vw;
-    max-width: 96vw;
-    min-width: 140px;
-    min-height: 210px;
-    margin: 0 auto;
-    border-radius: 10px;
-  }
-
-  #proximo-container .proximo-item .proximo-wrapper {
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-  }
-
-  #proximo-container .proximo-item .poster {
-    width: 100%;
-    height: 140px;
-    min-height: 120px;
-    border-radius: 10px 10px 0 0;
-    background-size: cover;
-    background-position: center;
-  }
-
-  #proximo-container .proximo-item .info {
-    width: 100%;
-    padding: 10px 6px;
-    text-align: center;
-    align-items: center;
-    gap: 6px;
-    max-height: none;
-    font-size: 0.98em;
-  }
-
-  #proximo-container .proximo-item h3 {
-    font-size: 1rem;
-    margin: 0 0 6px 0;
+  .info h3 {
+    font-size: 1.15rem;
+    margin: 0 0 10px 0;
     text-align: center;
   }
-
-  #proximo-container .proximo-item p {
-    display: none;
-  }
-
-  #proximo-container .proximo-item .btn-container button {
-    width: 100%;
-    padding: 8px 0;
+  .info p {
     font-size: 0.98rem;
+    margin-bottom: 18px;
+    text-align: center;
+    max-height: 7em;
   }
-
+  .btn-container {
+    justify-content: center;
+  }
+  .btn-container button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
   .btn-scroll-upcoming {
-    display: none;
+    display: none !important;
   }
 }
