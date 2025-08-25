@@ -3,6 +3,9 @@
    ============================= */
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -11,15 +14,19 @@ body {
   font-family: Arial, sans-serif;
   background-color: #0b0f17;
   color: #fff;
+  min-height: 100vh;
 }
 
 main {
-  flex: 1; /* ocupa todo el espacio disponible antes del footer */
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-  h2{
-     color: #DAAD5C;
-  }
+h2 {
+  color: #DAAD5C;
+  margin-top: 0;
+}
 
 /* =============================
    HEADER PRINCIPAL
@@ -30,6 +37,8 @@ main {
   justify-content: space-between;
   padding: 16px 100px;
   background-color: #0b1221;
+  position: relative;
+  z-index: 100;
 }
 
 .logo img {
@@ -39,13 +48,20 @@ main {
 }
 
 /* MENÚ PRINCIPAL */
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 24px;
+  margin: 0;
+  padding: 0;
 }
 
-.search-menu-item{
+.search-menu-item {
   display: none;
 }
 
@@ -60,6 +76,13 @@ main {
   padding: 8px 12px;
   display: inline-block;
   transition: color 0.3s;
+  border-radius: 4px;
+}
+
+.main-nav a:focus,
+.main-nav a:hover {
+  color: #DAAD5C;
+  background: rgba(218,173,92,0.08);
 }
 
 /* Dropdown desktop */
@@ -95,10 +118,13 @@ main {
   padding: 8px 16px;
   color: #fff;
   white-space: nowrap;
+  border-radius: 4px;
 }
 
-.dropdown a:hover {
+.dropdown a:hover,
+.dropdown a:focus {
   background-color: #1f6feb;
+  color: #fff;
 }
 
 /* =============================
@@ -108,6 +134,7 @@ main {
   display: flex;
   gap: 8px;
   align-items: center;
+  margin: 0;
 }
 
 .search-bar input[type="search"] {
@@ -117,6 +144,7 @@ main {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   min-width: 200px;
+  outline: none;
 }
 
 .search-bar input::placeholder {
@@ -134,50 +162,37 @@ main {
   transition: background-color 0.3s;
 }
 
-.search-bar button:hover {
+.search-bar button:hover,
+.search-bar button:focus {
   background-color: #1456b8;
 }
-   
-@media (max-width: 768px) {
-  /* =========================
-  HEADER MÓVIL
-  ========================= */
-  
-  /* Header principal */
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+@media (max-width: 1024px) {
   .main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 8px;
+  }
+
+  .main-header {
     padding: 10px;
     position: relative;
+    flex-wrap: wrap;
   }
 
-  /* Barra de búsqueda oculta por defecto */
-  .main-header .search-bar {
-    display: none;
-    position: absolute;
-    top: 50%;                /* centra verticalmente en el header */
-    right: 10px;             /* margen desde la derecha */
-    transform: translateY(-50%); /* corrige desplazamiento vertical */
-    width: 60%;              /* ajusta ancho según diseño */
-    background-color: #0b1221;
-    padding: 6px;
-    border-radius: 4px;
-    z-index: 15;
-  }
-
-  .search-menu-item{
-    display: flex;
-    gap: 8px;
-  }
-
-  /* Logo a la izquierda */
   .logo img {
     height: 60px;
     width: 60px;
   }
 
-  /* Botón hamburguesa centrado */
+  /* Menú hamburguesa */
   .hamburger {
     position: absolute;
     left: 50%;
@@ -205,37 +220,35 @@ main {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    width: 100vw;
     flex-direction: column;
     background-color: #0b1221;
     border-radius: 6px;
     padding: 10px 0;
-    gap: 8px;
+    gap: 12px;
     z-index: 20;
-    align-items: left;
+    align-items: flex-start;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
   }
 
-  /* Abrir menú al hacer click en hamburguesa */
+  /* Mostrar menú al abrir */
   .main-header.nav-open .main-nav {
     display: flex;
   }
 
-  /* Lista de links vertical */
   .main-nav ul {
-    display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 12px;
     padding: 0;
     margin: 0;
-    list-style: none;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .main-nav a {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    color: #fff;
-    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    width: 100%;
   }
 
   /* Dropdowns dentro del menú */
@@ -243,6 +256,10 @@ main {
     display: none;
     flex-direction: column;
     padding-left: 10px;
+    position: static;
+    box-shadow: none;
+    background: none;
+    min-width: 0;
   }
 
   .has-dropdown.nav-open .dropdown {
@@ -257,6 +274,27 @@ main {
     background-color: #1f6feb;
     color: #fff;
     cursor: pointer;
+  }
+
+  .search-menu-item {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  /* Barra de búsqueda oculta por defecto */
+  .main-header .search-bar {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 60%;
+    background-color: #0b1221;
+    padding: 6px;
+    border-radius: 4px;
+    z-index: 15;
   }
 
   .botones-container {
@@ -282,4 +320,10 @@ main {
   .btn-scroll {
     display: none;
   }
+}
+
+/* Mejora accesibilidad: focus visible */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid #DAAD5C;
+  outline-offset: 2px;
 }

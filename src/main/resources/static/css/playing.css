@@ -4,18 +4,17 @@
 .cartelera-header {
   width: 90%;
   max-width: 1200px;
-  margin: 50px auto 0 auto;
+  margin: 24px auto 8px auto;
   color: #DAAD5C;
   font-size: 1.8rem;
   align-self: center;
-  /* centra dentro de flex column */
 }
 
 /* Contenedor principal del carrusel */
 .carrusel {
   width: 90%;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 32px auto;
   text-align: left;
 }
 
@@ -23,34 +22,26 @@
 .carrusel h2 {
   color: #DAAD5C;
   font-size: 1.8rem;
-  margin-left: auto;
-  margin-bottom: 20px;
+  margin: 0 0 16px 0;
 }
-
-
 
 /* Fila del carrusel: contiene botones y wrapper */
 .fila-peliculas {
   display: flex;
   flex-direction: column;
-  /* Apila el h2 arriba y el carrusel abajo */
   align-items: flex-start;
-  /* Alinea todo a la izquierda */
-
   position: relative;
   padding-bottom: 8px;
+  gap: 0;
 }
 
 /* Wrapper para scroll horizontal */
 .peliculas-wrapper {
   flex: none;
-  /* que no se estire automáticamente */
   overflow: hidden;
-  /* oculta scroll nativo */
   max-width: 1400px;
-  /* límite máximo de ancho */
   margin: 0 auto;
-  /* centrado */
+  width: 100%;
 }
 
 /* Contenedor de items */
@@ -59,13 +50,12 @@
   gap: 16px;
   transition: transform 0.3s ease;
   scroll-snap-type: x mandatory;
-  padding: 32px 0;
+  padding: 24px 0;
 }
 
 /* Cada película */
 .pelicula-item {
   flex: 0 0 180px;
-  /* ancho fijo */
   display: flex;
   flex-direction: column;
   background-color: #1e1e1e;
@@ -148,12 +138,9 @@
 /* ==============================
    BOTONES DE SCROLL
    ============================== */
-
-/* Botones de scroll (prev y next) */
 .btn-scroll {
   position: absolute;
   top: 50%;
-  /* más cerca del centro vertical de las películas */
   transform: translateY(-50%);
   z-index: 10;
   width: 36px;
@@ -178,29 +165,88 @@
 /* Posicionamiento de botones por carrusel */
 #cartelera-prev,
 #trending-prev {
-  left: 200px;
+  left: 220px;
 }
 
 #cartelera-next,
 #trending-next {
-  right: 200px;
+  right: 220px;
 }
 
 /* ==============================
    RESPONSIVE
    ============================== */
+@media screen and (max-width: 1024px) {
+  .cartelera-header,
+  .carrusel {
+    max-width: 98vw;
+    width: 98vw;
+  }
+  .peliculas-wrapper {
+    max-width: 100vw;
+  }
+  #cartelera-prev,
+  #trending-prev {
+    left: 4px;
+  }
+  #cartelera-next,
+  #trending-next {
+    right: 4px;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .cartelera-header {
+    font-size: 1.2rem;
+    margin: 16px auto 4px auto;
+    width: 98vw;
+    max-width: 98vw;
+    text-align: left;
+    padding-left: 4px;
+  }
+
+  .carrusel {
+    width: 100vw;
+    max-width: 100vw;
+    margin: 16px 0;
+    padding: 0;
+  }
+
+  .peliculas-wrapper {
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
   .peliculas-container {
-    gap: 10px;
+    gap: 8px;
+    padding: 12px 0;
   }
 
   .pelicula-item {
-    flex: 0 0 45%;
-    /* 2 películas aprox. por pantalla */
+    flex: 0 0 70vw;
+    max-width: 90vw;
+    min-width: 140px;
   }
 
   .btn-scroll {
     display: none;
-    /* se desactivan botones, se usa scroll táctil */
+  }
+
+  .botones-container {
+    gap: 6px;
+    padding: 0.25rem;
+  }
+
+  .btn-trailer {
+    font-size: 0.95rem;
+    padding: 6px 0;
+  }
+
+  .btn-info {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+    line-height: 26px;
   }
 }
